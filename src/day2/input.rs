@@ -1,5 +1,5 @@
 pub const DAY2_INPUT: &str =
-"B Z
+    "B Z
 C Z
 C Z
 A Y

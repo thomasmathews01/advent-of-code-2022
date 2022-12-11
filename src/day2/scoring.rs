@@ -1,51 +1,36 @@
-use crate::day2::decoding::{Outcome, RpsChoice};
+use crate::day2::decoding::{HandChoice, Outcome};
+use crate::day2::decoding::Outcome::{Draw, Lose, Win};
 use crate::strum::IntoEnumIterator;
 
-pub fn get_round_score(round: (RpsChoice, RpsChoice)) -> u32 {
+pub fn get_round_score(round: (HandChoice, HandChoice)) -> u32 {
     let (_, my_choice) = round;
 
-    get_shape_score(my_choice) + get_victory_score(get_round_result(round))
+    my_choice as u32 + get_round_result(round) as u32
 }
 
-pub fn get_real_round_score(round: (RpsChoice, Outcome)) -> u32 {
+pub fn get_real_round_score(round: (HandChoice, Outcome)) -> u32 {
     let (opponents_choice, outcome) = round;
-    let my_choice = RpsChoice::iter().find(|choice| get_round_result((opponents_choice, *choice)) == outcome).unwrap();
+    let my_choice = HandChoice::iter().find(|choice| get_round_result((opponents_choice, *choice)) == outcome).unwrap();
 
-    get_shape_score(my_choice) + get_victory_score(outcome)
+    my_choice as u32 + outcome as u32
 }
 
-fn get_shape_score(choice: RpsChoice) -> u32 {
-    match choice {
-        RpsChoice::Rock => 1,
-        RpsChoice::Paper => 2,
-        RpsChoice::Scissors => 3
-    }
-}
-
-fn get_victory_score(result: Outcome) -> u32 {
-    match result {
-        Outcome::Lose => 0,
-        Outcome::Draw => 3,
-        Outcome::Win => 6
-    }
-}
-
-fn get_round_result(round: (RpsChoice, RpsChoice)) -> Outcome {
+fn get_round_result(round: (HandChoice, HandChoice)) -> Outcome {
     let (opponents_choice, my_choice) = round;
 
     if my_choice == winning_choice_against(opponents_choice) {
-        Outcome::Win
+        Win
     } else if my_choice == opponents_choice {
-        Outcome::Draw
+        Draw
     } else {
-        Outcome::Lose
+        Lose
     }
 }
 
-fn winning_choice_against(choice: RpsChoice) -> RpsChoice {
+fn winning_choice_against(choice: HandChoice) -> HandChoice {
     match choice {
-        RpsChoice::Rock => RpsChoice::Paper,
-        RpsChoice::Paper => RpsChoice::Scissors,
-        RpsChoice::Scissors => RpsChoice::Rock
+        HandChoice::Rock => HandChoice::Paper,
+        HandChoice::Paper => HandChoice::Scissors,
+        HandChoice::Scissors => HandChoice::Rock
     }
 }

@@ -1,45 +1,45 @@
 use std::str::FromStr;
 
 #[derive(EnumString, EnumIter, Debug, Eq, PartialOrd, PartialEq, Clone, Copy)]
-pub enum RpsChoice {
-    #[strum(serialize="A", serialize="X")]
-    Rock,
-    #[strum(serialize="B", serialize="Y")]
-    Paper,
-    #[strum(serialize="C", serialize="Z")]
-    Scissors
+pub enum HandChoice {
+    #[strum(serialize = "A", serialize = "X")]
+    Rock = 1,
+    #[strum(serialize = "B", serialize = "Y")]
+    Paper = 2,
+    #[strum(serialize = "C", serialize = "Z")]
+    Scissors = 3,
 }
 
 #[derive(EnumString, Debug, Eq, PartialOrd, PartialEq, Clone, Copy)]
 pub enum Outcome {
-    #[strum(serialize="X")]
-    Lose,
-    #[strum(serialize="Y")]
-    Draw,
-    #[strum(serialize="Z")]
-    Win
+    #[strum(serialize = "X")]
+    Lose = 0,
+    #[strum(serialize = "Y")]
+    Draw = 3,
+    #[strum(serialize = "Z")]
+    Win = 6,
 }
 
-pub fn get_guide_pairs(input: &str) -> impl Iterator<Item=(RpsChoice, RpsChoice)> + '_ {
+pub fn get_guide_pairs(input: &str) -> impl Iterator<Item=(HandChoice, HandChoice)> + '_ {
     input
         .split("\n")
         .filter_map(decode_pair)
 }
 
-pub fn get_real_guide_pairs(input: &str) -> impl Iterator<Item=(RpsChoice, Outcome)> + '_ {
+pub fn get_real_guide_pairs(input: &str) -> impl Iterator<Item=(HandChoice, Outcome)> + '_ {
     input
         .split("\n")
         .filter_map(decode_real_pair)
 }
 
-fn decode_pair(pair: &str) -> Option<(RpsChoice, RpsChoice)> {
+fn decode_pair(pair: &str) -> Option<(HandChoice, HandChoice)> {
     let mut choices = pair.split_whitespace();
 
-    Some((RpsChoice::from_str(choices.next()?).ok()?, RpsChoice::from_str(choices.next()?).ok()?))
+    Some((HandChoice::from_str(choices.next()?).ok()?, HandChoice::from_str(choices.next()?).ok()?))
 }
 
-fn decode_real_pair(pair: &str) -> Option<(RpsChoice, Outcome)> {
+fn decode_real_pair(pair: &str) -> Option<(HandChoice, Outcome)> {
     let mut choices = pair.split_whitespace();
 
-    Some((RpsChoice::from_str(choices.next()?).ok()?, Outcome::from_str(choices.next()?).ok()?))
+    Some((HandChoice::from_str(choices.next()?).ok()?, Outcome::from_str(choices.next()?).ok()?))
 }

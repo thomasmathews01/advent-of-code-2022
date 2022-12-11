@@ -1,5 +1,5 @@
 pub const DAY1_INPUT: &str =
-"7914
+    "7914
 5032
 11424
 2567

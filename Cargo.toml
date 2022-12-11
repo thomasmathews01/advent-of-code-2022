@@ -8,3 +8,8 @@ edition = "2021"
 [dependencies]
 strum = "0.24.1"
 strum_macros = "0.24.3"
+itertools = "0.10.5"
+tinyset = "0.4.15"
+tinyvec = { version = "1.6.0", features = ["rustc_1_57"] }
+dendron = "0.1.4"
+array2d = "0.3.0"
