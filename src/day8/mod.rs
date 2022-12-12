@@ -1,4 +1,4 @@
-use std::cmp::{max, min};
+use std::cmp::{max};
 use array2d::Array2D;
 use itertools::Itertools;
 
@@ -14,6 +14,7 @@ pub fn get_day8_part1_answer(input: &str) -> usize {
     for (row, col) in (0..rows).cartesian_product(0..cols) {
         let height = tree_grid.get(row, col).unwrap();
 
+        // Tree is visible if all trees between it and the edge have a lower height than itself
         let visible_from_left = tree_grid.row_iter(row).unwrap().take(col).all(|tree| tree < &height);
         let visible_from_right = tree_grid.row_iter(row).unwrap().rev().take(cols - 1 - col).all(|tree| tree < &height);
         let visible_from_top = tree_grid.column_iter(col).unwrap().take(row).all(|tree| tree < &height);

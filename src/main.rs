@@ -1,11 +1,14 @@
 #![feature(binary_heap_into_iter_sorted)]
 #![feature(iterator_try_collect)]
+#![feature(generators)]
+#![feature(iter_from_generator)]
 #![feature(iter_array_chunks)]
 extern crate strum;
 #[macro_use]
 extern crate strum_macros;
 
 use crate::day1::{DAY1_INPUT, find_calories_carried_by_elf_with_most_calories, find_calories_carried_by_the_n_elves_with_most_calories};
+use crate::day10::{DAY10_INPUT, get_day10_part1_answer, get_day10_part2_answer};
 use crate::day2::{actual_score, best_case_score, DAY2_INPUT};
 use crate::day3::{DAY3_INPUT, get_day3_part1_answer, get_day3_part2_answer};
 use crate::day4::{DAY4_INPUT, get_day4_part1_answer, get_day4_part2_answer};
@@ -22,6 +25,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day10;
 
 fn main() {
     let complete_start = std::time::Instant::now();
@@ -65,6 +69,11 @@ fn main() {
     println!("Day 8 Part 1 Answer: {:?}", get_day8_part1_answer(DAY8_INPUT));
     println!("Day 8 Part 2 Answer: {:?}", get_day8_part2_answer::<99>(DAY8_INPUT));
     println!("Day 8 took {:?}", day8_start.elapsed());
+
+    let day10_start = std::time::Instant::now();
+    println!("Day 10 Part 1 Answer: {:?}", get_day10_part1_answer(DAY10_INPUT,  20, 40));
+    println!("Day 10 Part 2 Answer: \n{}", get_day10_part2_answer(DAY10_INPUT));
+    println!("Day 10 took {:?}", day10_start.elapsed());
 
     println!("Whole thing took: {:?}", complete_start.elapsed())
 }
