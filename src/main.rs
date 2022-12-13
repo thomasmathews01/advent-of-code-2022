@@ -16,6 +16,7 @@ use crate::day5::{DAY5_INPUT, get_day5_part1_answer, get_day5_part2_answer};
 use crate::day6::{DAY6_INPUT, get_day6_part1_answer, get_day6_part2_answer};
 use crate::day7::{DAY7_INPUT, get_day7_part1_answer, get_day7_part2_answer};
 use crate::day8::{DAY8_INPUT, get_day8_part1_answer, get_day8_part2_answer};
+use crate::day9::{DAY9_INPUT, get_day9_part1_answer};
 
 mod day1;
 mod day2;
@@ -25,6 +26,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 mod day10;
 
 fn main() {
@@ -69,6 +71,11 @@ fn main() {
     println!("Day 8 Part 1 Answer: {:?}", get_day8_part1_answer(DAY8_INPUT));
     println!("Day 8 Part 2 Answer: {:?}", get_day8_part2_answer::<99>(DAY8_INPUT));
     println!("Day 8 took {:?}", day8_start.elapsed());
+
+    let day9_start = std::time::Instant::now();
+    println!("Day 9 Part 1 Answer: {:?}", get_day9_part1_answer(DAY9_INPUT));
+    //println!("Day 9 Part 2 Answer: {:?}", get_day9_part2_answer::<99>(DAY9_INPUT));
+    println!("Day 9 took {:?}", day9_start.elapsed());
 
     let day10_start = std::time::Instant::now();
     println!("Day 10 Part 1 Answer: {:?}", get_day10_part1_answer(DAY10_INPUT,  20, 40));
